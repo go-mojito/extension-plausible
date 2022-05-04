@@ -1,5 +1,5 @@
-github.com/go-mojito/mojito v0.0.2-0.20220504231006-b7bf40f05563 h1:SQcvTGY7hzXBTANjIZkSjjWR47iIr4jf+5Xe0rJPl2o=
-github.com/go-mojito/mojito v0.0.2-0.20220504231006-b7bf40f05563/go.mod h1:aW1MES5qa7st3w4DDxmUnGYWIJKjntjZ+Z7cyAeatt0=
+github.com/go-mojito/mojito v0.0.2 h1:q242m3zfsXGHEEzd7kcJpIbPr0hRn1coSXlHsKvUVTw=
+github.com/go-mojito/mojito v0.0.2/go.mod h1:aW1MES5qa7st3w4DDxmUnGYWIJKjntjZ+Z7cyAeatt0=
 github.com/infinytum/injector v0.0.1 h1:MYHfr75NAeQ66YKDYaer6BgHLbD/UD3o/mCTZcEnXjA=
 github.com/infinytum/injector v0.0.1/go.mod h1:/8absiTs7Afl21cGagOLkXPrypVGZrOSkH4qu/IsP28=
 github.com/infinytum/structures v0.0.2 h1:h/0EvNICrqynCKaKoO/6djR+cPLS2wj8KHAzPt0r4k0=
