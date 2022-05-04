@@ -22,11 +22,8 @@ type plausibleContext struct {
 }
 
 // domain will resolve the domain the event is being created for
-func (p *plausibleContext) domain() string {
-	if Domain != "" {
-		return Domain
-	}
-	return p.Request().GetRequest().URL.Host
+func (p *plausibleContext) IsDomain() bool {
+	return strings.ToLower(p.Request().GetRequest().URL.Host) == strings.ToLower(Domain)
 }
 
 // createEvent will create an empty event with request-based values filled in
@@ -34,9 +31,9 @@ func (p *plausibleContext) createEvent(eventName string) *PlausibleEvent {
 	url := p.Request().GetRequest().URL
 	referer := p.Request().GetRequest().Referer()
 	event := &PlausibleEvent{
-		Domain:  p.domain(),
+		Domain:  strings.ToLower(p.Request().GetRequest().URL.Host),
 		Event:   eventName,
-		URL:     fmt.Sprintf("http://%s%s", p.domain(), url.Path),
+		URL:     fmt.Sprintf("http://%s%s", strings.ToLower(p.Request().GetRequest().URL.Host), url.Path),
 		Width:   guessWidthFromUA(p.Request().GetRequest().UserAgent()),
 		Payload: nil,
 	}
@@ -50,7 +47,7 @@ func (p *plausibleContext) createEvent(eventName string) *PlausibleEvent {
 func (p *plausibleContext) PageView(pageUrl ...string) error {
 	event := p.createEvent("pageview")
 	if pageUrl != nil && len(pageUrl) > 0 {
-		event.URL = fmt.Sprintf("http://%s/%s", p.domain(), strings.Join(pageUrl, "/"))
+		event.URL = fmt.Sprintf("http://%s/%s", strings.ToLower(p.Request().GetRequest().URL.Host), strings.Join(pageUrl, "/"))
 	}
 	return SubmitEvent(*event)
 }
