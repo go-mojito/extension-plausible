@@ -55,6 +55,9 @@ func (p *plausibleContext) createEvent(eventName string) *PlausibleEvent {
 
 // PageView will send a pageview event to the Plausible API for tracking visits
 func (p *plausibleContext) PageView(pageUrl ...string) error {
+	if enforceDomainFilter && !p.IsDomain() {
+		return nil
+	}
 	event := p.createEvent("pageview")
 	if pageUrl != nil && len(pageUrl) > 0 {
 		event.URL = fmt.Sprintf("http://%s/%s", domain, strings.Join(pageUrl, "/"))
@@ -64,6 +67,9 @@ func (p *plausibleContext) PageView(pageUrl ...string) error {
 
 // Trigger will send a custom event to the Plausible API for tracking goals
 func (p *plausibleContext) Trigger(eventName string, payload map[string]string) error {
+	if enforceDomainFilter && !p.IsDomain() {
+		return nil
+	}
 	event := p.createEvent(eventName)
 	event.Payload = payload
 	return SubmitEvent(*event)

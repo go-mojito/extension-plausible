@@ -18,8 +18,9 @@ var (
 	client = &http.Client{
 		Timeout: time.Second * 10,
 	}
-	domain = ""
-	url    = "https://plausible.io"
+	domain              = ""
+	enforceDomainFilter = true
+	url                 = "https://plausible.io"
 )
 
 func init() {
@@ -32,6 +33,12 @@ func init() {
 // This is required to enable the extension
 func Configure(siteDomain string) {
 	domain = siteDomain
+}
+
+// EnforceDomain enables or disables the filter that will prevent tracking from happening
+// when the request host does not match the configured domain
+func EnforceDomain(enforce bool) {
+	enforceDomainFilter = enforce
 }
 
 // SetInstanceURL will change the API base URL to the given URL.
