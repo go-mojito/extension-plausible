@@ -35,9 +35,9 @@ func (p *plausibleContext) createEvent(eventName string) *PlausibleEvent {
 	forwardedFor := p.Request().GetRequest().Header.Get("X-Forwarded-For")
 	realIP := p.Request().GetRequest().Header.Get("X-Real-IP")
 	event := &PlausibleEvent{
-		Domain:  strings.ToLower(p.Request().GetRequest().URL.Host),
+		Domain:  domain,
 		Event:   eventName,
-		URL:     fmt.Sprintf("http://%s%s", strings.ToLower(p.Request().GetRequest().URL.Host), url.Path),
+		URL:     fmt.Sprintf("http://%s%s", domain, url.Path),
 		Width:   guessWidthFromUA(p.Request().GetRequest().UserAgent()),
 		Payload: nil,
 	}
@@ -57,7 +57,7 @@ func (p *plausibleContext) createEvent(eventName string) *PlausibleEvent {
 func (p *plausibleContext) PageView(pageUrl ...string) error {
 	event := p.createEvent("pageview")
 	if pageUrl != nil && len(pageUrl) > 0 {
-		event.URL = fmt.Sprintf("http://%s/%s", strings.ToLower(p.Request().GetRequest().URL.Host), strings.Join(pageUrl, "/"))
+		event.URL = fmt.Sprintf("http://%s/%s", domain, strings.Join(pageUrl, "/"))
 	}
 	return SubmitEvent(*event)
 }
