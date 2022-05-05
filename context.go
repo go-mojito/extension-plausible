@@ -25,7 +25,7 @@ type plausibleContext struct {
 
 // domain will resolve the domain the event is being created for
 func (p *plausibleContext) IsDomain() bool {
-	return strings.ToLower(p.Request().GetRequest().URL.Host) == strings.ToLower(domain)
+	return strings.ToLower(p.Request().GetRequest().Host) == strings.ToLower(domain)
 }
 
 // createEvent will create an empty event with request-based values filled in
