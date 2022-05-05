@@ -9,13 +9,17 @@ import (
 	"net/http"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/go-mojito/mojito/pkg/router"
 )
 
 var (
-	Domain = ""
-	URL    = "https://plausible.io"
+	client = &http.Client{
+		Timeout: time.Second * 10,
+	}
+	domain = ""
+	url    = "https://plausible.io"
 )
 
 func init() {
@@ -24,27 +28,39 @@ func init() {
 	})
 }
 
-// PlausibleEvent defines the structure of the payload sent to the
-// Plausible API for any event
-type PlausibleEvent struct {
-	Domain  string            `json:"d"`
-	Event   string            `json:"n"`
-	URL     string            `json:"u"`
-	Referer *string           `json:"r"`
-	Width   int               `json:"w"`
-	Payload map[string]string `json:"p,omitempty"`
+// Configure sets the domain of the plausible site that will be reported for.
+// This is required to enable the extension
+func Configure(siteDomain string) {
+	domain = siteDomain
 }
 
+// SetInstanceURL will change the API base URL to the given URL.
+// This is useful if you self-host plausible and you want to use that instance
+func SetInstanceURL(instanceURL string) {
+	url = instanceURL
+}
+
+// SubmitEvent will POST an event to the plausible API
 func SubmitEvent(event PlausibleEvent) error {
 	jsonBody, err := json.Marshal(event)
 	if err != nil {
 		return err
 	}
 
-	resp, err := http.Post(fmt.Sprintf("%s/api/event", URL), "text/plain", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/api/event", url), bytes.NewBuffer(jsonBody))
 	if err != nil {
-		return err
+		return fmt.Errorf("Got error %s", err.Error())
 	}
+	req.Header.Set("Content-Type", "text/plain")
+	if event.IP != nil {
+		req.Header.Set("X-Forwarded-For", *event.IP)
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return fmt.Errorf("Got error %s", err.Error())
+	}
+	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
