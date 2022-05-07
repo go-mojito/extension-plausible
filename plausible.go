@@ -2,6 +2,7 @@ package plausible
 
 import (
 	"reflect"
+	"regexp"
 
 	"github.com/go-mojito/mojito/pkg/router"
 )
@@ -9,6 +10,7 @@ import (
 var (
 	domain              = ""
 	enforceDomainFilter = true
+	filters             = []regexp.Regexp{}
 	url                 = "https://plausible.io"
 )
 
@@ -28,6 +30,12 @@ func Configure(siteDomain string) {
 // when the request host does not match the configured domain
 func EnforceDomain(enforce bool) {
 	enforceDomainFilter = enforce
+}
+
+// Ignore will skip matching URL paths when using the automatic middleware tracking.
+// This is useful if you want to filter out assets, admin areas, etc from your stats.
+func Ignore(r regexp.Regexp) {
+	filters = append(filters, r)
 }
 
 // SetInstanceURL will change the API base URL to the given URL.
