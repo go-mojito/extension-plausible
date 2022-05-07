@@ -4,9 +4,7 @@ import (
 	"regexp"
 )
 
-var (
-	uaRegex = regexp.MustCompile(`(?m)Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini`)
-)
+var uaRegex = regexp.MustCompile(`(?m)Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini`)
 
 func guessWidthFromUA(userAgent string) int {
 	if uaRegex.MatchString(userAgent) {
