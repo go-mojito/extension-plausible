@@ -34,8 +34,8 @@ func EnforceDomain(enforce bool) {
 
 // Ignore will skip matching URL paths when using the automatic middleware tracking.
 // This is useful if you want to filter out assets, admin areas, etc from your stats.
-func Ignore(r regexp.Regexp) {
-	filters = append(filters, r)
+func Ignore(r *regexp.Regexp) {
+	filters = append(filters, *r)
 }
 
 // SetInstanceURL will change the API base URL to the given URL.
