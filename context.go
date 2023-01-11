@@ -1,12 +1,12 @@
 package plausible
 
 import (
-	"github.com/go-mojito/mojito"
+	"github.com/go-mojito/mojito/pkg/router"
 )
 
 // Context provides request-based functions to interact with Plausible
 type Context interface {
-	mojito.Context
+	router.Context
 
 	// PageView will send a pageview event to the Plausible API for tracking visits
 	PageView(pageUrl ...string) error
@@ -16,7 +16,7 @@ type Context interface {
 }
 
 // NewContext will create a new instance of the default implementation for PlausibleContext
-func NewContext(ctx mojito.Context) Context {
+func NewContext(ctx router.Context) Context {
 	return &context{
 		Context: ctx,
 	}
