@@ -15,8 +15,8 @@ var (
 )
 
 func init() {
-	router.RegisterHandlerArgFactory[Context](func(ctx router.Context, next router.HandlerFunc) reflect.Value {
-		return reflect.ValueOf(NewContext(ctx))
+	router.RegisterHandlerArgFactory[Context](func(ctx router.Context, next router.HandlerFunc) (reflect.Value, error) {
+		return reflect.ValueOf(NewContext(ctx)), nil
 	})
 }
 

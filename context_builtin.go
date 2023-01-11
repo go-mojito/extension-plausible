@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/go-mojito/mojito"
+	"github.com/go-mojito/mojito/pkg/router"
 )
 
 // context provides the implementation for PlausibleContext
 type context struct {
-	mojito.Context
+	router.Context
 }
 
 // domain will resolve the domain the event is being created for
