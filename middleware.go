@@ -12,7 +12,7 @@ func Middleware(ctx Context, logger mojito.Logger, next func() error) error {
 			}
 		}
 		if err := ctx.PageView(); err != nil {
-			logger.Error(err)
+			logger.Error("Error while sending pageview to Plausible", "error", err.Error())
 		}
 	}(ctx)
 	return next()

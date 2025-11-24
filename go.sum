@@ -1,5 +1,5 @@
-github.com/go-mojito/mojito v0.0.16 h1:OHv6zmI89ofbhGsbXrQZpZX1HR08xF6XefU8HFAGRWE=
-github.com/go-mojito/mojito v0.0.16/go.mod h1:6gYbGCZFeONuB0eTJQJqwg31+VEoP8aiXeKSH4RYDjM=
+github.com/go-mojito/mojito v0.0.19 h1:t2vowCYiSag7kXMXgk1E5hA1iXSNkbYI/DUh2s0ehYI=
+github.com/go-mojito/mojito v0.0.19/go.mod h1:czTduo8DsH+/JGjvqCAAL6Zc8ppJ/3r8LJV6SPXGdEo=
 github.com/infinytum/injector v0.0.3 h1:E7oj58MCr0emxPSNoRgGvAUdLwJP797vbD1mRSoOBQg=
 github.com/infinytum/injector v0.0.3/go.mod h1:/8absiTs7Afl21cGagOLkXPrypVGZrOSkH4qu/IsP28=
 github.com/infinytum/introspector v0.0.0-20221124203324-542f216aab81 h1:RG//Cr6nLKKWbdNDGavwFEuUInvzIk2wfmPG8LZBVaI=
@@ -10,7 +10,7 @@ github.com/julienschmidt/httprouter v1.3.0 h1:U0609e9tgbseu3rBINet9P48AI/D3oJs4d
 github.com/julienschmidt/httprouter v1.3.0/go.mod h1:JR6WtHb+2LUe8TCKY3cZOxFyyO8IZAc4RVcycCCAKdM=
 github.com/mitchellh/hashstructure/v2 v2.0.2 h1:vGKWl0YJqUNxE8d+h8f6NJLcCJrgbhC4NcD46KavDd4=
 github.com/mitchellh/hashstructure/v2 v2.0.2/go.mod h1:MG3aRVU/N29oo/V/IhBX8GR/zz4kQkprJgF2EVszyDE=
-golang.org/x/net v0.7.0 h1:rJrUqqhjsgNp7KqAIc25s9pZnjU7TUcSY7HcVZjdn1g=
-golang.org/x/net v0.7.0/go.mod h1:2Tu9+aMcznHK/AK1HMvgo6xiTLG5rD5rZLDS+rp2Bjs=
-golang.org/x/text v0.7.0 h1:4BRB4x83lYWy72KwLD/qYDuTu7q9PjSagHvijDw7cLo=
-golang.org/x/text v0.7.0/go.mod h1:mrYo+phRRbMaCq/xk9113O4dZlRixOauAjOtrjsXDZ8=
+golang.org/x/net v0.32.0 h1:ZqPmj8Kzc+Y6e0+skZsuACbx+wzMgo5MQsJh9Qd6aYI=
+golang.org/x/net v0.32.0/go.mod h1:CwU0IoeOlnQQWJ6ioyFrfRuomB8GKF6KbYXZVyeXNfs=
+golang.org/x/text v0.21.0 h1:zyQAAkrwaneQ066sspRyJaG9VNi/YJ1NfzcGB3hZ/qo=
+golang.org/x/text v0.21.0/go.mod h1:4IBbMaMmOPCJ8SecivzSH54+73PCFmPWxNTLm+vZkEQ=
